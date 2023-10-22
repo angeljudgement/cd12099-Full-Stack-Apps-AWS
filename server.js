@@ -43,7 +43,9 @@ app.get("/", async (req, res) => {
 app.get("/filteredimage", async (req, res, next) => {
   let imageUrl = req.query?.["image_url"];
   if (!imageUrl) {
-    return res.status(400);
+    res.status(400);
+    res.send("image_url is invalid please try again");
+    return;
   }
 
   let imgPath = await filterImageFromURL(imageUrl);
