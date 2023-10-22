@@ -42,11 +42,11 @@ app.get("/", async (req, res) => {
 
 app.get("/filteredimage", async (req, res, next) => {
   let imageUrl = req.query?.["image_url"];
-  let imgPath = await filterImageFromURL(imageUrl);
-
   if (!imageUrl) {
     return res.status(400);
   }
+
+  let imgPath = await filterImageFromURL(imageUrl);
 
   res.sendFile(imgPath, {}, (err) => {
     if (err) {
